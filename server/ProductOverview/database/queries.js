@@ -26,7 +26,7 @@ getProductInfo = (productId, callback) => {
 getStyles = (productId, callback) => {
   // const styleQuery = `SELECT styles.product_id, json_agg(json_build_object('style_id', styles.style_id, 'name', styles.name,'original_price', styles.original_price, 'default?', styles."default?", 'photos', (SELECT json_agg(json_build_object('thumbnail_url', thumbnail_url, 'url', url)) FROM photos WHERE style_id = styles.style_id) WHERE style_id = styles.style_id GROUP BY style_id) AS results FROM styles WHERE styles.product_id = ${productId} GROUP BY product_id`;
 
-  const styleQuery = `SELECT product_id, json_agg(json_build_object('style_id', style_id, 'name', name, 'original_price', original_price, 'default?', "default?")) AS results FROM styles WHERE product_id = ${productId} GROUP BY product_id`;
+  const styleQuery = `SELECT product_id, json_agg(json_build_object('style_id', style_id, 'name', name, 'original_price', original_price, 'default?', "default?", 'photos', (SELECT json_agg(json_build_object('thumbnail', thumbnail_url, 'url', url)) FROM photos WHERE style_id = styles.style_id))) AS results FROM styles WHERE product_id = ${productId} GROUP BY product_id`;
 
   db.query(styleQuery)
     .then((response) => {
