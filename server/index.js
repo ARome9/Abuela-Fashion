@@ -3,7 +3,8 @@ const path = require('path');
 const router = require('./routes.js');
 const cors = require('cors');
 const app = express();
-const URL = require('./controllers/url.js');
+// const URL = require('./controllers/url.js');
+const URL = 'http://localhost:4000';
 
 const port = process.env.PORT || 3000;
 

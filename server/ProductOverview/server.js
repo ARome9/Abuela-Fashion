@@ -20,8 +20,9 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/products/:product_id', (req, res) => {
+  console.log('REQ IN SDC SERVER', req)
   let { product_id } = req.params;
-  console.log(product_id);
+  console.log('PRODUCT ID', product_id);
   controller.getProductInfo(product_id, (err, results) => {
     if (err) {
       console.error("Err on line 27 in server.js", err);
@@ -42,8 +43,6 @@ app.get('/products/:product_id/styles', (req, res) => {
     }
   });
 });
-
-
 
 app.listen(port, () => {
   console.log('Listening on port ', port);

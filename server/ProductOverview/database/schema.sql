@@ -50,24 +50,30 @@ CREATE TABLE skus(
   foreign key (style_id) references styles (style_id)
 );
 
-COPY products(product_id, "name", slogan, "description", category, default_price) FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/product.csv'
-DELIMITER ','
-CSV HEADER;
-
-COPY styles(style_id, product_id, "name", sale_price, original_price, "default?") FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/styles.csv'
-DELIMITER ','
-NULL as 'null'
-CSV HEADER;
-
-COPY skus(sku_id, style_id, size, quantity) FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/skus.csv'
-DELIMITER ','
-CSV HEADER;
-
-COPY photos(photo_id, style_id, thumbnail_url, "url") FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/photos.csv'
-DELIMITER ','
-CSV HEADER;
+CREATE INDEX features_index ON features (product_id);
+CREATE INDEX styles_index ON styles (product_id);
+CREATE INDEX photos_index ON photos (style_id);
+CREATE INDEX skus_index ON skus (style_id);
 
 
-COPY features(feature_id, product_id, feature, "value") FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/features.csv'
-DELIMITER ','
-CSV HEADER;
+-- COPY products(product_id, "name", slogan, "description", category, default_price) FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/product.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY styles(style_id, product_id, "name", sale_price, original_price, "default?") FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/styles.csv'
+-- DELIMITER ','
+-- NULL as 'null'
+-- CSV HEADER;
+
+-- COPY skus(sku_id, style_id, size, quantity) FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/skus.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY photos(photo_id, style_id, thumbnail_url, "url") FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/photos.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+
+-- COPY features(feature_id, product_id, feature, "value") FROM '/Users/Alex/HackReactor/RFP57/SDC/Abuela-Fashion/server/ProductOverview/database/features.csv'
+-- DELIMITER ','
+-- CSV HEADER;

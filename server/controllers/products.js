@@ -1,4 +1,5 @@
-const URL = require('./url.js');
+// const URL = require('./url.js');
+const URL = 'http://localhost:4000';
 const { TOKEN } = require('./config.js');
 const axios = require('axios');
 
